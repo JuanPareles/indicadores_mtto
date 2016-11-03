@@ -65,7 +65,6 @@ class MenuController < ApplicationController
     @hasta = params[:hasta]
 
     @data_grafica = []
-    @Mantenimientos.each do |mtto|
 
       arr_fechas = []
       fecha_desde = Date.parse(@desde)
@@ -117,7 +116,7 @@ class MenuController < ApplicationController
       hrs_programadas = 0
       mantenimientos.each do |mtto|
         hrs_programadas = hrs_programadas + mtto.duracion
-      endi
+      end
       hrs_reales = mantenimientos.sum("tiempo_aplicado")
       if hrs_reales.nonzero?
         eficiencia = (hrs_programadas/hrs_reales) * 100
