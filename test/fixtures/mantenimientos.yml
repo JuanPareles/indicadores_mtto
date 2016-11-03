@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nro_mtto: MyString
+  fecha: 2016-10-11
+  equipo: MyString
+  tipo: MyString
+  duracion: 1
+  tiempo_aplicado: 
+  observacion: MyText
+
+two:
+  nro_mtto: MyString
+  fecha: 2016-10-11
+  equipo: MyString
+  tipo: MyString
+  duracion: 1
+  tiempo_aplicado: 
+  observacion: MyText

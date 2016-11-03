@@ -1,0 +1,43 @@
+<div class="card padding-lg">
+  <div class="card-title row">
+    <div class="col s8">
+      <h5 class="center margin-top-xlg">Base de Datos</h5>
+    </div>
+    <div class="col s4">
+      <%= image_tag("payloader.png", height: "150px") %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <table class="bordered highlight responsive-table centered">
+      <thead>
+        <tr>
+          <th>Orden de Trabajo</th>
+          <th>Fecha</th>
+          <th>Equipo</th>
+          <th>Tipo de Mtto</th>
+          <th>Duracion (mins)</th>
+          <th>Tiempo Aplicado (mins)</th>
+          <th>Observacion</th>
+        </tr>`
+      </thead>
+      <tbody>
+        <% @mttos.each do |m| %>
+          <tr>
+            <td><%= m.nro_mtto %></td>
+            <td><%= m.fecha %></td>
+            <td><%= m.equipo %></td>
+            <td><%= m.tipo %></td>
+            <td><%= m.duracion %></td>
+            <td><%= m.tiempo_aplicado %></td>
+            <td><%= m.observacion %></td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="col s6 center">
+    <%= link_to "Regresar al menu", root_path , class: 'waves-effect waves-teal btn-flat' %>
+  </div>
+</div>

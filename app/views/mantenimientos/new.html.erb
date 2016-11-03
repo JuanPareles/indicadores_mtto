@@ -1,0 +1,101 @@
+<div class="card padding-lg">
+  <div class="card-title row">
+    <div class="col s8">
+      <h5 class="center margin-top-xlg">Mantenimiento Preventivo de Equipo Movil</h5>
+    </div>
+    <div class="col s4">
+      <%= image_tag("payloader.png", height: "150px") %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <%= form_for @mtto, :html => {class: 'col s12'} do |f| %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :nro_mtto, :class => 'validate' %>
+          <%= f.label :nro_mtto, "Nro de Mantenimiento" %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.text_field :fecha, :class => 'datepicker', :type => 'date' %>
+          <%= f.label :fecha, "Fecha" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%#
+          <%= f.select(:equipo, options_for_select([
+                                                         ['MONTACARGAS 3,5', 'MONTACARGAS 3,5'],
+                                                         ['MONTACARGAS 15,5', 'MONTACARGAS 15,5'],
+                                                         ['MANLIFT', 'MANLIFT'],
+                                                         ['PAYLOADER JOHN DEERE', 'PAYLOADER JOHN DEERE'],
+                                                         ['COMBILIFT', 'COMBILIFT']
+                                                     ])
+          ) %>
+          <%= f.collection_select(:equipo, Equipo.all, :id, :nombre) %>
+
+          <%= f.label :equipo, "Equipo" %>
+        </div>
+
+        <div class="input-field col s6">
+          <%= f.select(:tipo, options_for_select([
+                                                         ['M1', 'm1'],
+                                                         ['M2', 'm2'],
+                                                         ['M3', 'm3'],
+                                                         ['M4', 'm4'],
+                                                     ])
+              ) %>
+          <%= f.label :tipo, "Tipo de Mantenimiento" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :duracion, :class => 'validate', :type => 'number', :id => 'duracion' %>
+          <%= f.label :duracion, "Duracion (En minutos)" %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.text_field :tiempo_aplicado, :class => 'validate', :type => 'number', :id => 'tiempo_aplicado', :input_html => {:onchange => "needObservation()"} %>
+          <%= f.label :tiempo_aplicado, "Tiempo Aplicado (En minutos)" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12" hidden id="observacion">
+          <label for="observacion">Observacion</label>
+          <%= f.text_field :observacion, :class => 'materialize-textarea' %>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col s6 center">
+          <%= link_to "Regresar al menu", root_path , class: 'waves-effect waves-teal btn-flat' %>
+        </div>
+        <div class="col s6 center">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Registrar</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+  $("#tiempo_aplicado").change(function() {
+    tiempo_a = $('#tiempo_aplicado').val();
+    duracion = parseInt($('#duracion').val());
+    duracion_25_mas = (duracion * 0.25) + duracion;
+    duracion_25_menos = duracion - (duracion * 0.25);
+    if (tiempo_a > duracion_25_mas || tiempo_a < duracion_25_menos) {
+      $('#observacion').show();
+    }
+    else {
+      $('#observacion').hide();
+    }
+  });
+</script>

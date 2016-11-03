@@ -1,0 +1,53 @@
+// Place all the styles related to the menu controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  background-color: lightslategray;
+  font-family: Arial;
+}
+
+.card-title {
+  border-radius: 2px;
+  background-color: #00bfa5;
+  color: #fafafa;
+  h3, h5 {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}
+
+.padding-sm {
+  padding: 10px;
+}
+.padding-md {
+  padding: 20px;
+}
+.padding-lg {
+  padding: 40px;
+}
+.padding-top-sm {
+  padding-top: 10px;
+}
+.padding-top-md {
+  padding-top: 20px;
+}
+.padding-top-lg {
+  padding-top: 40px;
+}
+.margin-top-sm {
+  margin-top: 10px;
+}
+.margin-top-md {
+  margin-top: 20px;
+}
+.margin-top-lg {
+  margin-top: 40px;
+}
+.margin-top-xlg {
+  margin-top: 60px;
+}
+
+table tr td {
+  text-align: center;
+}

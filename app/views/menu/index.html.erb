@@ -1,0 +1,41 @@
+
+    <br><br>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title padding-top-sm">
+          <div class="row">
+            <div class="col m4 center">
+              <%= image_tag("manlift.png", height: "170px") %>
+            </div>
+            <div class="col m4">
+              <h3 class="header center margin-top-lg">Mantenimiento Preventivo</h3>
+            </div>
+            <div class="col m4 center">
+              <%= image_tag("montacargas.png", height: "170px") %>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <div class="row center">
+          <div class="col m6">
+            <div class="row center">
+            <%= link_to "Registrar Mantenimiento", new_mantenimiento_path , class: 'waves-effect waves-light btn btn-large white-text' %>
+            </div>
+            <div class="row center">
+              <%= link_to "Añadir Equipo", new_equipo_path , class: 'waves-effect waves-light btn btn-large white-text' %>
+            </div>
+            <div class="row center">
+            <%= link_to "Base de Datos", menu_base_datos_path , class: 'waves-effect waves-light btn btn-large white-text' %>
+            </div>
+          </div>
+          <div class="col m6">
+            <div class="row center">
+              <%= link_to "Indicadores de la Gestion", menu_indicadores_seleccion_path, class: 'waves-effect waves-light btn btn-large white-text' %>
+            </div>
+            <div class="row center">
+                <%= link_to "Analisis", root_path , class: 'waves-effect waves-light btn btn-large white-text' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
