@@ -18,8 +18,8 @@
       <p><%= @hasta %></p>
     </div>
     <div class="col s4">
-      <label for="indicador">Indicador</label>
-      <p><%= @indicador %></p>
+      <!--<label for="indicador">Indicador</label>-->
+      <!--<p><%= @indicador %></p>-->
     </div>
   </div>
   <div class="row">
@@ -28,19 +28,73 @@
       <p>
         <b>Eficiencia: </b> <%= @eficiencia %>
       </p>
+      <% if (@eficiencia.to_f >= 0 && @eficiencia.to_f <= 60) %>
+          <p>
+            Estado: Baja
+          </p>
+          <p><i>
+            Nota: No se esta utilizando el tiempo adecuado para la realizacion de los mantenimientos
+          </i></p>
+      <% end %>
+      <% if (@eficiencia.to_f >= 61 && @eficiencia.to_f <= 80) %>
+          <p>
+            Estado: Media
+          </p>
+      <% end %>
+      <% if @eficiencia.to_f >= 81 && @eficiencia.to_f <= 100 %>
+          <p>
+            Estado: Alta
+          </p>
+      <% end %>
     </div>
     <div class="col s4">
       <p>
         <b>Ocupacion: </b> <%= @ocupacion %>
       </p>
+      <% if (@ocupacion.to_f >= 0 && @ocupacion.to_f <= 50) %>
+        <p>
+          Estado: Baja
+        </p>
+        <p>
+          Se estan realizando las actividades de mantenimiento de manera apresurada.
+        </p>
+      <% end %>
+      <% if (@ocupacion.to_f >= 51 && @ocupacion.to_f <= 79) %>
+          <p>
+            Estado: Media
+          </p>
+      <% end %>
+      <% if @ocupacion.to_f >= 80 && @ocupacion.to_f <= 100 %>
+          <p>
+            Estado: Alta
+          </p>
+      <% end %>
     </div>
     <div class="col s4">
       <p>
         <b>Productividad: </b> <%= @productividad %>
       </p>
+      <% if (@productividad.to_f >= 0 && @productividad.to_f <= 20) %>
+          <p>
+            Estado: Baja
+          </p>
+          <p>
+            No se esta utilizando el tiempo adecuado destinado para la realizacion de los matenimiendos.
+          </p>
+      <% end %>
+      <% if (@productividad.to_f >= 21 && @productividad.to_f <= 60) %>
+          <p>
+            Estado: Media
+          </p>
+      <% end %>
+      <% if @productividad.to_f >= 61 && @productividad.to_f <= 100 %>
+          <p>
+            Estado: Alta
+          </p>
+      <% end %>
     </div>
-    <hr>
   </div>
+    <hr>
 
   <div class="row">
     <div class="col s12">
@@ -57,63 +111,102 @@
 <div id="data" data-max="<%= @hasta %>" data-min="<%= @desde %>"></div>
 
 <script>
-  var data = [
+
+  var datos = {
+    labels: ['Eficiencia', 'Ocupacion', 'Productividad'],
+    datasets: [
       {
-        x:'2016-11-02',
-        y:30
+        label: "Optima",
+        backgroundColor: "rgba(238,153,153,0.5)",
+        borderColor: "rgba(174,74,74,1)",
+        data: [100,100,100]
       },
       {
-        x:'2016-11-03',
-        y:40
-      }
-  ]
-  var desde = '<%= @desde %>';
-  var hasta ='<%= @hasta %>';
+      label: "Calculada",
+      backgroundColor: "rgba(75,192,192,0.4)",
+      borderColor: "rgba(75,192,192,1)",
+      data: ['<%= @eficiencia %>','<%= @ocupacion %>','<%= @productividad %>']
+    }]
+  }
+
   var ctx = $("#myChart");
   var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [{
-        label: "indicador",
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "rgba(75,192,192,1)",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: "rgba(75,192,192,1)",
-        pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-        pointHoverBorderColor: "rgba(220,220,220,1)",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: data,
-        spanGaps: false,
-      }]
-    },
+    type: 'bar',
+    data: datos,
     options: {
+      display: true,
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero:true
-          }
-        }],
-        xAxes: [{
-          type: 'time',
-          time: {
-            unit: 'day',
-            max: hasta,
-            min: desde
+            min: 0,
+            max: 150,
+            stepSize: 10
           }
         }]
       }
     }
   });
+
+
+
+
+//  var data = [
+//      {
+//        x:'2016-11-02',
+//        y:30
+//      },
+//      {
+//        x:'2016-11-03',
+//        y:40
+//      }
+//  ]
+//  var desde = '<%= @desde %>';
+//  var hasta ='<%= @hasta %>';
+//  var ctx = $("#myChart");
+//  var myChart = new Chart(ctx, {
+//    type: 'line',
+//    data: {
+//      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//      datasets: [{
+//        label: "indicador",
+//        fill: false,
+//        lineTension: 0.1,
+//        backgroundColor: "rgba(75,192,192,0.4)",
+//        borderColor: "rgba(75,192,192,1)",
+//        borderCapStyle: 'butt',
+//        borderDash: [],
+//        borderDashOffset: 0.0,
+//        borderJoinStyle: 'miter',
+//        pointBorderColor: "rgba(75,192,192,1)",
+//        pointBackgroundColor: "#fff",
+//        pointBorderWidth: 1,
+//        pointHoverRadius: 5,
+//        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+//        pointHoverBorderColor: "rgba(220,220,220,1)",
+//        pointHoverBorderWidth: 2,
+//        pointRadius: 1,
+//        pointHitRadius: 10,
+//        data: data,
+//        spanGaps: false,
+//      }]
+//    },
+//    options: {
+//      scales: {
+//        yAxes: [{
+//          ticks: {
+//            beginAtZero:true
+//          }
+//        }],
+//        xAxes: [{
+//          type: 'time',
+//          time: {
+//            unit: 'day',
+//            max: hasta,
+//            min: desde
+//          }
+//        }]
+//      }
+//    }
+//  });
 
 </script>

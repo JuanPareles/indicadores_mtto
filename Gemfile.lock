@@ -43,6 +43,8 @@ GEM
       execjs
     builder (3.2.2)
     byebug (9.0.6)
+    chart-js-rails (0.1.0)
+      railties (> 3.1)
     chartkick (2.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -161,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   byebug
+  chart-js-rails
   chartkick
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
